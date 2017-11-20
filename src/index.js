@@ -1,12 +1,13 @@
 /* Core */
 import React from 'react';
+import RootNavigator from 'routes';
 
 /* Presentational */
-import { View } from 'react-native';
+// import { View } from 'react-native';
 
 // import styles from './styles';
 const App = () => (
-  <View />
+  <RootNavigator />
 );
 
 export default App;

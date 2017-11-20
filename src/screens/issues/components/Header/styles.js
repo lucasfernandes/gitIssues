@@ -1,7 +1,6 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { colors, fonts, metrics } from 'styles';
 
-const { height } = Dimensions.get('window');
 const styles = StyleSheet.create({
   headerContainer: {
     height: 56 + metrics.statusBarHeight,
@@ -12,13 +11,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
   },
-  textInput: {
-    backgroundColor: colors.background,
+  text: {
     borderRadius: 5,
     flex: 0.95,
     padding: 10,
-    color: colors.dark,
-    fontSize: fonts.small,
+    color: colors.black,
+    fontSize: fonts.middle,
+    fontWeight: 'bold',
   },
   icon: {
     fontSize: fonts.icon,
@@ -44,10 +43,6 @@ const styles = StyleSheet.create({
   },
   loading: {
     paddingVertical: 10,
-  },
-  flatRepositories: {
-    paddingTop: 20,
-    minHeight: height,
   },
   emptyContainer: {
     paddingTop: 0,
