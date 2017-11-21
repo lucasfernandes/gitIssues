@@ -5,7 +5,7 @@ Git Issues is an app to add your repos and track all it's issues.
 
 Adding Repos               |  Listing Issues
 :-------------------------:|:-------------------------:
-![](https://goo.gl/WV2oe1) |  ![](https://goo.gl/ynu64t)
+![](https://github.com/lucasfernandes/gitIssues/blob/master/src/docs/add-repo.gif) |  ![](https://github.com/lucasfernandes/gitIssues/blob/master/src/docs/listing-issues.gif)
 
 
 ## Development setup
