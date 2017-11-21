@@ -93,18 +93,10 @@ export default class Repositories extends Component {
   }
 
   loadRepositories = async () => {
-    // await AsyncStorage.clear();
     this.setState({ refreshing: true });
 
     const repositories = await AsyncStorage.getItem('@GitIssues:repositories')
       .then(response => (response ? JSON.parse(response) : []));
-
-    // console.tron.display({
-    //   name: 'loadRepositories',
-    //   preview: 'Dados do AsyncStorage',
-    //   value: repositories,
-    //   important: true,
-    // });
 
     this.setState({
       repositories,

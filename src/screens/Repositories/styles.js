@@ -1,4 +1,4 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet, Dimensions, Platform } from 'react-native';
 import { colors, fonts, metrics } from 'styles';
 
 const { height } = Dimensions.get('window');
@@ -6,6 +6,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.background,
+    paddingTop: metrics.headerSpace,
   },
   headerContainer: {
     height: 56 + metrics.statusBarHeight,

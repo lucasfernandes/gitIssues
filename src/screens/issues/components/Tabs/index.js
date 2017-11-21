@@ -10,7 +10,7 @@ import styles from './styles';
 export default class Tabs extends Component {
   static propTypes = {
     status: PropTypes.string.isRequired,
-    filterIssues: PropTypes.func.isRequired,
+    getIssues: PropTypes.func.isRequired,
   };
 
   static defaultProps = {};
@@ -26,7 +26,7 @@ export default class Tabs extends Component {
     return (
       <View style={styles.container}>
         {tabs.map(tab => (
-          <TouchableOpacity key={tab.id} onPress={() => this.props.filterIssues(tab.id)}>
+          <TouchableOpacity key={tab.id} onPress={() => this.props.getIssues(tab.id)}>
             <Text style={[styles.tab, status === tab.id && styles.active]}>{tab.name}</Text>
           </TouchableOpacity>
         ))}

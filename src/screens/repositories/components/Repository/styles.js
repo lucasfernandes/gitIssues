@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 import { colors, fonts } from 'styles';
 
 const styles = StyleSheet.create({
@@ -11,6 +11,7 @@ const styles = StyleSheet.create({
     height: 75,
     borderRadius: 5,
     marginHorizontal: 20,
+    // marginBottom: Platform.OS === 'ios' ? 10 : 10,
     marginBottom: 10,
     padding: 15,
   },
@@ -24,7 +25,7 @@ const styles = StyleSheet.create({
     height: 45,
     justifyContent: 'space-between',
     marginLeft: 20,
-    paddingVertical: 3,
+    paddingVertical: 2,
   },
   title: {
     color: colors.darker,

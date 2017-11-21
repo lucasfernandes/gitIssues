@@ -1,8 +1,6 @@
-import { Platform, Dimensions } from 'react-native';
-
-const { width } = Dimensions.get('window');
+import { Platform } from 'react-native';
 
 export default {
   statusBarHeight: (Platform.OS === 'ios') ? 20 : 0,
-  globalWidth: width,
+  headerSpace: Platform.OS === 'ios' ? 0 : 20,
 };

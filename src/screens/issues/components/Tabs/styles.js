@@ -3,7 +3,6 @@ import { colors, fonts } from 'styles';
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
@@ -12,7 +11,6 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     margin: 20,
     marginBottom: 10,
-    // marginTop: 20,
   },
   tab: {
     color: colors.dark,

@@ -14,9 +14,9 @@ import styles from './styles';
 
 export default class Issues extends Component {
   static navigationOptions = {
-    header: ({ navigation }) => (
+    header: ({ scene, navigation }) => (
       <Header
-        title={navigation.state.routes[1].params.title}
+        title={scene.route.params.title}
         back={() => navigation.goBack()}
       />
     ),
@@ -45,30 +45,27 @@ export default class Issues extends Component {
 
   componentWillMount() {
     const { fullName } = this.props.navigation.state.params;
-    this.setState({ loading: true, repo: fullName });
 
-    this.loadIssues().then(() => this.setState({ loading: false }));
+    this.setState({ loading: true, repo: fullName }, () => {
+      this.loadIssues().then(() => this.setState({ loading: false }));
+    });
   }
 
   getIssues = (status) => {
-    this.setState({ status, loading: true });
-
-    this.loadIssues()
-      .then(() => { this.setState({ loading: false }); })
-      .catch(() => { this.setState({ error: true, loading: false }); });
+    this.setState({ status, loading: true }, () => {
+      this.loadIssues()
+        .then(() => { this.setState({ loading: false }); })
+        .catch(() => { this.setState({ error: true, loading: false }); });
+    });
   }
 
   loadIssues = async () => {
-    this.setState({ refreshing: true, issues: [] });
+    this.setState({ refreshing: true });
 
     const { status, repo } = this.state;
-    const response = await api.get(`repos/${repo}/issues`);
+    const response = await api.get(`repos/${repo}/issues?state=${status}`);
 
-    const issues = status === 'all'
-      ? response.data
-      : this.filterIssues(response.data);
-
-    this.setState({ refreshing: false, issues });
+    this.setState({ refreshing: false, issues: response.data });
   }
 
   filterIssues = issues => issues.filter(issue => (issue.state === this.state.status));
@@ -103,7 +100,7 @@ export default class Issues extends Component {
       <View style={styles.container}>
         <Tabs
           status={this.state.status}
-          filterIssues={this.getIssues}
+          getIssues={this.getIssues}
         />
         { this.state.loading
           ? <ActivityIndicator size="large" color={colors.black} style={styles.loading} />
