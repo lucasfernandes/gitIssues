@@ -23,7 +23,7 @@ react-native link react-native-vector-icons
 
 Lucas Silveira – [@lfsilveira](https://twitter.com/dbader_org) – lucas.fernandes.silveira@gmail.com
 
-[https://github.com/lucasfernandes/github-link](https://github.com/dbader/)
+[https://github.com/lucasfernandes](https://github.com/dbader/)
 
 
 <!-- Markdown link & img dfn's -->
