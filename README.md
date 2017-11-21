@@ -3,13 +3,13 @@ Git Issues
 
 Git Issues is an app to add your repos and track all it's issues.
 
-![](https://github.com/lucasfernandes/gitIssues/blob/master/src/docs/add-repo.gif)
+![](https://github.com/lucasfernandes/gitIssues/blob/master/src/docs/add-repo.gif)     
 ![](https://github.com/lucasfernandes/gitIssues/blob/master/src/docs/listing-issues.gif)
 
 
 ## Development setup
 
-We need to install the libs above:
+We need to install the libs below:
 
 ```via yarn
 yarn add prop-types
