@@ -57,7 +57,9 @@ export default class Repositories extends Component {
     this.setState({ loading: true });
 
     this.checkAndSaveRepository(name)
-      .then(() => { this.loadRepositories(); })
+      .then(() => {
+        this.loadRepositories().then(() => this.setState({ loading: false }));
+      })
       .catch(() => this.setState({ error: true, loading: false }));
   }
 
@@ -74,6 +76,7 @@ export default class Repositories extends Component {
     const {
       id,
       name,
+      full_name: fullName,
       organization: { login: organization },
       owner: { avatar_url: avatarUrl },
     } = response.data;
@@ -81,6 +84,7 @@ export default class Repositories extends Component {
     const newRepo = {
       id,
       name,
+      fullName,
       organization,
       avatarUrl,
     };

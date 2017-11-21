@@ -3,6 +3,10 @@ import { colors, fonts, metrics } from 'styles';
 
 const { height } = Dimensions.get('window');
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: colors.background,
+  },
   headerContainer: {
     height: 56 + metrics.statusBarHeight,
     paddingTop: metrics.statusBarHeight,
@@ -23,10 +27,6 @@ const styles = StyleSheet.create({
   icon: {
     fontSize: fonts.icon,
     color: colors.darker,
-  },
-  container: {
-    flex: 1,
-    backgroundColor: colors.background,
   },
   errorContainer: {
     alignItems: 'center',

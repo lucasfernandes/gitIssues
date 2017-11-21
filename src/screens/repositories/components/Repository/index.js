@@ -14,6 +14,7 @@ export default class Repository extends Component {
     repository: PropTypes.shape({
       id: PropTypes.number,
       name: PropTypes.string,
+      fullName: PropTypes.string,
       organization: PropTypes.string,
       avatarUrl: PropTypes.string,
     }).isRequired,
@@ -29,19 +30,19 @@ export default class Repository extends Component {
     const { navigate } = this.props.navigation;
 
     return (
-      <View style={styles.container}>
-        <Image
-          style={styles.avatar}
-          source={{ uri: repository.avatarUrl }}
-        />
-        <View style={styles.textContainer}>
-          <Text style={styles.title}>{repository.name}</Text>
-          <Text style={styles.sub}>{repository.organization}</Text>
-        </View>
-        <TouchableOpacity onPress={() => navigate('Issues', { title: repository.name })}>
+      <TouchableOpacity onPress={() => navigate('Issues', { title: repository.name, fullName: repository.fullName })}>
+        <View style={styles.container}>
+          <Image
+            style={styles.avatar}
+            source={{ uri: repository.avatarUrl }}
+          />
+          <View style={styles.textContainer}>
+            <Text style={styles.title}>{repository.name}</Text>
+            <Text style={styles.sub}>{repository.organization}</Text>
+          </View>
           <Icons name="angle-right" size={metrics.iconSize} style={styles.icon} />
-        </TouchableOpacity>
-      </View>
+        </View>
+      </TouchableOpacity>
     );
   }
 }

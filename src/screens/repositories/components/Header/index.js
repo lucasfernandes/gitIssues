@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 /* Presentational */
-import { View, TextInput, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { View, TextInput, TouchableOpacity } from 'react-native';
 import Icons from 'react-native-vector-icons/FontAwesome';
 import { colors } from 'styles';
 
@@ -12,11 +12,10 @@ import styles from './styles';
 export default class Header extends Component {
   static propTypes = {
     addRepository: PropTypes.func.isRequired,
-    // loading: PropTypes.bool.isRequired,
   }
 
   state = {
-    searchForRepo: '',
+    name: '',
   }
 
   render() {
@@ -28,9 +27,9 @@ export default class Header extends Component {
           placeholder="Adicionar Repositório"
           placeholderTextColor={colors.dark}
           style={styles.textInput}
-          onChangeText={searchForRepo => this.setState({ searchForRepo })}
+          onChangeText={name => this.setState({ name })}
         />
-        <TouchableOpacity onPress={() => this.props.addRepository(this.state.searchForRepo)}>
+        <TouchableOpacity onPress={() => this.props.addRepository(this.state.name)}>
           <Icons name="plus" style={styles.icon} />
         </TouchableOpacity>
       </View>

@@ -11,10 +11,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
   },
+  textContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   text: {
     borderRadius: 5,
-    flex: 0.95,
-    padding: 10,
     color: colors.black,
     fontSize: fonts.middle,
     fontWeight: 'bold',
@@ -23,29 +26,8 @@ const styles = StyleSheet.create({
     fontSize: fonts.icon,
     color: colors.darker,
   },
-  container: {
-    flex: 1,
-    backgroundColor: colors.background,
-  },
-  errorContainer: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingVertical: 5,
-  },
-  error: {
-    color: colors.error,
-    fontSize: fonts.small,
-  },
-  empty: {
-    color: colors.darker,
-    alignSelf: 'center',
-    paddingVertical: 5,
-  },
   loading: {
     paddingVertical: 10,
-  },
-  emptyContainer: {
-    paddingTop: 0,
   },
 });
 
