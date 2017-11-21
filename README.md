@@ -1,4 +1,4 @@
-Git Issues
+# Git Issues
 > 2nd Challenge for RocketSeat GoNative Course
 
 Git Issues is an app to add your repos and track all it's issues.
