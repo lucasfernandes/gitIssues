@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import api from 'services/api';
 
 /* Presentational */
-import { View, FlatList, RefreshControl, ActivityIndicator, Text } from 'react-native';
+import { View, FlatList, RefreshControl, ActivityIndicator, Text, AsyncStorage } from 'react-native';
 import { colors } from 'styles';
 
 import Header from './components/Header';
@@ -44,11 +44,12 @@ export default class Issues extends Component {
   }
 
   componentWillMount() {
-    const { fullName } = this.props.navigation.state.params;
+    this.setInitialStates().then(() =>
+      this.loadIssues().then(() => this.setState({ loading: false })));
+  }
 
-    this.setState({ loading: true, repo: fullName }, () => {
-      this.loadIssues().then(() => this.setState({ loading: false }));
-    });
+  async componentWillUnmount() {
+    await AsyncStorage.setItem('@GitIssues:status', this.state.status);
   }
 
   getIssues = (status) => {
@@ -57,6 +58,13 @@ export default class Issues extends Component {
         .then(() => { this.setState({ loading: false }); })
         .catch(() => { this.setState({ error: true, loading: false }); });
     });
+  }
+
+  setInitialStates = async () => {
+    const { fullName } = this.props.navigation.state.params;
+
+    const status = await AsyncStorage.getItem('@GitIssues:status');
+    this.setState({ status, loading: true, repo: fullName });
   }
 
   loadIssues = async () => {
