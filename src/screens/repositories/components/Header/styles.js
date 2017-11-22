@@ -1,4 +1,4 @@
-import { StyleSheet, Platform } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { colors, fonts, metrics } from 'styles';
 
 const styles = StyleSheet.create({
@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.background,
     borderRadius: 5,
     flex: 0.95,
-    padding: Platform.OS === 'ios' ? 10 : 2,
+    padding: metrics.inputPadding,
     paddingHorizontal: 10,
     color: colors.dark,
     fontSize: fonts.small,

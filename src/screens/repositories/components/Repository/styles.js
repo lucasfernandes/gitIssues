@@ -11,7 +11,6 @@ const styles = StyleSheet.create({
     height: 75,
     borderRadius: 5,
     marginHorizontal: 20,
-    // marginBottom: Platform.OS === 'ios' ? 10 : 10,
     marginBottom: 10,
     padding: 15,
   },
