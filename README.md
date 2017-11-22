@@ -1,4 +1,4 @@
-Git Issues
+# Git Issues
 > 2nd Challenge for RocketSeat GoNative Course
 
 Git Issues is an app to add your repos and track all it's issues.
@@ -23,7 +23,7 @@ react-native link react-native-vector-icons
 
 Lucas Silveira – [@lfsilveira](https://twitter.com/dbader_org) – lucas.fernandes.silveira@gmail.com
 
-[https://github.com/lucasfernandes/github-link](https://github.com/dbader/)
+[github.com/lucasfernandes](https://github.com/lucasfernandes/)
 
 
 <!-- Markdown link & img dfn's -->
