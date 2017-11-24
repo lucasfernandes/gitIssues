@@ -1,6 +1,6 @@
 import { StackNavigator } from 'react-navigation';
-import Repositories from 'screens/repositories';
-import Issues from 'screens/issues';
+import Repositories from 'screens/Repositories';
+import Issues from 'screens/Issues';
 
 const rootNavigator = StackNavigator({
   Repositories: { screen: Repositories },

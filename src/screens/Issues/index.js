@@ -26,7 +26,7 @@ export default class Issues extends Component {
     navigation: PropTypes.shape({
       state: PropTypes.shape({
         params: PropTypes.shape({
-          fullName: PropTypes.string,
+          repo: PropTypes.string,
         }).isRequired,
       }).isRequired,
     }).isRequired,
@@ -43,46 +43,50 @@ export default class Issues extends Component {
     repo: '',
   }
 
-  componentWillMount() {
-    this.setInitialStates().then(() =>
-      this.loadIssues().then(() => this.setState({ loading: false })));
+  async componentWillMount() {
+    this.setState({ repo: this.props.navigation.state.params.repo });
+
+    await this.loadIssues();
   }
 
-  async componentWillUnmount() {
-    await AsyncStorage.setItem('@GitIssues:status', this.state.status);
-  }
-
-  getIssues = (status) => {
-    this.setState({ status, loading: true }, () => {
-      this.loadIssues()
-        .then(() => { this.setState({ loading: false }); })
-        .catch(() => { this.setState({ error: true, loading: false }); });
-    });
-  }
-
-  setInitialStates = async () => {
-    const { fullName } = this.props.navigation.state.params;
-
-    const status = await AsyncStorage.getItem('@GitIssues:status');
-    this.setState({ status, loading: true, repo: fullName });
+  saveStatusState = (status) => {
+    this.setState({ status });
   }
 
   loadIssues = async () => {
+    this.setState({ loading: true });
+    try {
+      await this.loadFilter();
+      await this.fetchIssues();
+      this.setState({ loading: false });
+    } catch (error) {
+      this.setState({ error: true, loading: false });
+    }
+  }
+
+  loadFilter = async () => {
+    const status = await AsyncStorage.getItem('@GitIssues:status');
+
+    if (status !== null && status !== 'all') {
+      this.setState({ status });
+    }
+  }
+
+  fetchIssues = async () => {
     this.setState({ refreshing: true });
 
     const { status, repo } = this.state;
     const response = await api.get(`repos/${repo}/issues?state=${status}`);
+    if (!response.ok) throw Error();
 
     this.setState({ refreshing: false, issues: response.data });
-  }
-
-  filterIssues = issues => issues.filter(issue => (issue.state === this.state.status));
+  };
 
   toogleRender = () => (
     this.state.issues.length > 0
       ? this.renderIssues()
       : this.showError()
-  )
+  );
 
   showError = () => (
     <Text style={styles.error}>Weeiirrlll... nenhuma Issue foi encontrada aqui.</Text>
@@ -108,7 +112,8 @@ export default class Issues extends Component {
       <View style={styles.container}>
         <Tabs
           status={this.state.status}
-          getIssues={this.getIssues}
+          saveStatusState={this.saveStatusState}
+          loadIssues={this.loadIssues}
         />
         { this.state.loading
           ? <ActivityIndicator size="large" color={colors.black} style={styles.loading} />
