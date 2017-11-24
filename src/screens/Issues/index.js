@@ -43,10 +43,10 @@ export default class Issues extends Component {
     repo: '',
   }
 
-  async componentWillMount() {
+  componentWillMount() {
     this.setState({ repo: this.props.navigation.state.params.repo });
 
-    await this.loadIssues();
+    this.loadIssues();
   }
 
   saveStatusState = (status) => {

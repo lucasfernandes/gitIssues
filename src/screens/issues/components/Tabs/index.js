@@ -11,7 +11,7 @@ const saveTab = async (tab, loadIssues, saveStatusState) => {
   await AsyncStorage.setItem('@GitIssues:status', tab)
     .then(() => saveStatusState(tab));
 
-  await loadIssues();
+  loadIssues();
 };
 
 const tabs = [
